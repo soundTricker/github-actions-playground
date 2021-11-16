@@ -20,6 +20,7 @@ jobs:
       - name: Set env
         id: vars
         run: |
+          echo "$${{fromJson(secrets.ENV_MAP)}}"
           echo "::set-output name=env::${{fromJson(secrets.ENV_MAP)[github.ref_name].env}}"
           echo "::set-output name=env_name::${{fromJson(secrets.ENV_MAP)[github.ref_name].env_name}}"
           echo "::set-output name=project_name::${{fromJson(secrets.ENV_MAP)[github.ref_name].project_name}}"
