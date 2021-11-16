@@ -21,7 +21,6 @@ jobs:
       - name: Set env
         id: vars
         run: |
-          echo "$${{secrets.ENV_MAP}}"
           echo "$${{fromJson(secrets.ENV_MAP).master.env}}"
           echo "$${{github.ref_name}}"
           echo "::set-output name=env::${{fromJson(secrets.ENV_MAP)[github.ref_name].env}}"
