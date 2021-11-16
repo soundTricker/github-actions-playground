@@ -1,0 +1,30 @@
+name: Deploy Backends
+on:
+  push:
+    branches:
+      - main
+      - deployment/staging-001
+      - deployment/staging-002
+      - deployment/staging-003
+      - deployment/staging-004
+      - deployment/staging-005
+      - deployment/staging-006
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set env
+        id: vars
+        run: |
+          echo "::set-output name=env::${{fromJson(secrets.ENV_MAP)[github.ref_name].env}}"
+          echo "::set-output name=env_name::${{fromJson(secrets.ENV_MAP)[github.ref_name].env_name}}"
+          echo "::set-output name=project_name::${{fromJson(secrets.ENV_MAP)[github.ref_name].project_name}}"
+      - name: echo
+        run: |
+          echo "${{steps.vars.outputs.env}}"
+          echo "${{steps.vars.outputs.env_name}}"
+          echo "${{steps.vars.outputs.project_name}}"
