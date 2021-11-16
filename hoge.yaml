@@ -1,0 +1,5 @@
+env_variables:
+  APP_ENV: staging
+  HOGE: FUGA
+  IDP_USER_KEYFILE: '{"hoge": "service_account", "project_id": "fuga"}'
+  
