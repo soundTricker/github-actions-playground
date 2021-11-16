@@ -31,3 +31,6 @@ jobs:
           echo "${{steps.vars.outputs.env}}"
           echo "${{steps.vars.outputs.env_name}}"
           echo "${{steps.vars.outputs.project_name}}"
+      - name: sed
+        run: |-
+          cat hoge.yaml | sed -e 's/env_variables://' | sed -e 's/: */=/' | sed -e 's/\n$/ /g' | sed -e 's/^  /--set-env-vars /
